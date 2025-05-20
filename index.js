@@ -54,6 +54,24 @@ async function run() {
       res.send(result);
     });
 
+    app.put("/tasks/:taskId", async (req, res) => {
+      const id = req.params.taskId;
+      const updatedTask = req.body;
+      console.log(updatedTask);
+      const options = { upsert: true };
+      const filter = { _id: new ObjectId(id) };
+
+      const updateDocument = {
+        $set: updatedTask,
+      };
+      const result = await taskCollection.updateOne(
+        filter,
+        updateDocument,
+        options
+      );
+      res.send(result);
+    });
+
     
 
     // user related api
