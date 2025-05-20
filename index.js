@@ -25,7 +25,7 @@ async function run() {
     await client.connect();
 
     const taskCollection = client.db("taskDB").collection("tasks");
-    // const usersCollection = client.db("allProducts").collection("users");
+    const usersCollection = client.db("taskDB").collection("users");
 
     app.get("/tasks", async (req, res) => {
       const result = await taskCollection.find().toArray();
@@ -82,29 +82,32 @@ async function run() {
 
     // user related api
 
-    // app.get("/users", async (req, res) => {
-    //   const result = await usersCollection.find().toArray();
+    // app.get("/users/:userEmail", async (req, res) => {
+    //   const { userEmail } = req.params;
+    //   const query = { email: userEmail };
+    //   const result = await usersCollection.findOne(query);
+    //   console.log(result);
     //   res.send(result);
     // });
 
-    // app.post("/users", async (req, res) => {
-    //   const newUserProfile = req.body;
-
-    //   const result = await usersCollection.insertOne(newUserProfile);
-    //   res.send(result);
-    // });
+    app.post("/users", async (req, res) => {
+      const newUserProfile = req.body;
+      const result = await usersCollection.insertOne(newUserProfile);
+      res.send(result);
+    });
 
     // app.patch("/users", async (req, res) => {
-    //   const { email, lastSignInTime } = req.body;
+    //   const { email, bids } = req.body;
 
     //   const filter = { email: email };
     //   const updatedDoc = {
     //     $set: {
-    //       lastSignInTime: lastSignInTime,
+    //       bids: bids,
     //     },
     //   };
 
     //   const result = await usersCollection.updateOne(filter, updatedDoc);
+    //   console.log(result);
     //   res.send(result);
     // });
 
