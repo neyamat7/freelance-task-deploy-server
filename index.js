@@ -96,20 +96,20 @@ async function run() {
       res.send(result);
     });
 
-    // app.patch("/users", async (req, res) => {
-    //   const { email, bids } = req.body;
+    app.patch("/users", async (req, res) => {
+      const { email, bids } = req.body;
 
-    //   const filter = { email: email };
-    //   const updatedDoc = {
-    //     $set: {
-    //       bids: bids,
-    //     },
-    //   };
+      const filter = { email: email };
+      const updatedDoc = {
+        $set: {
+          bids: bids,
+        },
+      };
 
-    //   const result = await usersCollection.updateOne(filter, updatedDoc);
-    //   console.log(result);
-    //   res.send(result);
-    // });
+      const result = await usersCollection.updateOne(filter, updatedDoc);
+      console.log(result);
+      res.send(result);
+    });
 
     // app.delete("/users/:id", async (req, res) => {
     //   try {
