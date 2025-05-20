@@ -72,8 +72,25 @@ async function run() {
       res.send(result);
     });
 
+    app.patch("/tasks/:taskId", async (req, res) => {
+      const id = req.params.taskId;
+      const { bids } = req.body;
+
+      const filter = { _id: new ObjectId(id) };
+
+      const updateDocument = {
+        $set: {
+          bids: bids,
+        },
+      };
+      const result = await taskCollection.updateOne(filter, updateDocument);
+      res.send(result);
+    });
+
     app.delete("/tasks/:id", async (req, res) => {
       const id = req.params.id;
+
+      await usersCollection.updateMany({ bids: id }, { $pull: { bids: id } });
 
       const query = { _id: new ObjectId(id) };
       const result = await taskCollection.deleteOne(query);
