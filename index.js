@@ -32,6 +32,20 @@ async function run() {
       res.send(result);
     });
 
+    app.get("/featured", async (req, res) => {
+      const query = {};
+
+      const sortFields = { deadline: 1 };
+      const limitNum = 6;
+      const result = await taskCollection
+        .find(query)
+        .sort(sortFields)
+        .limit(limitNum)
+        .toArray();
+
+      res.send(result);
+    });
+
     app.get("/tasks/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
@@ -98,7 +112,6 @@ async function run() {
     });
 
     // user related api
-
     app.get("/users/:userEmail", async (req, res) => {
       const { userEmail } = req.params;
       const query = { email: userEmail };
@@ -128,31 +141,12 @@ async function run() {
       res.send(result);
     });
 
-    // app.delete("/users/:id", async (req, res) => {
-    //   try {
-    //     const id = req.params.id;
-    //     const { email } = req.body;
-    //     const query = { _id: new ObjectId(id) };
-    //     const result = await usersCollection.deleteOne(query);
-
-    //     // // delete user from firebase
-    //     // const userRecord = await admin.auth().getUserByEmail(email);
-    //     // await admin.auth().deleteUser(userRecord.uid);
-
-    //     res.send(result);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // });
-
-    // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
 
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
   } finally {
-    // Ensures that the client will close when you finish/error
     // await client.close();
   }
 }
