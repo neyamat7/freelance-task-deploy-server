@@ -82,13 +82,13 @@ async function run() {
 
     // user related api
 
-    // app.get("/users/:userEmail", async (req, res) => {
-    //   const { userEmail } = req.params;
-    //   const query = { email: userEmail };
-    //   const result = await usersCollection.findOne(query);
-    //   console.log(result);
-    //   res.send(result);
-    // });
+    app.get("/users/:userEmail", async (req, res) => {
+      const { userEmail } = req.params;
+      const query = { email: userEmail };
+      const result = await usersCollection.findOne(query);
+      console.log(result);
+      res.send(result);
+    });
 
     app.post("/users", async (req, res) => {
       const newUserProfile = req.body;
