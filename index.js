@@ -39,7 +39,15 @@ async function run() {
       res.send(result);
     });
 
-   
+    app.get("/user-tasks/:userUid", async (req, res) => {
+      const uid = req.params.userUid;
+      console.log(uid);
+      const query = { userUid: uid };
+      const result = await taskCollection.find(query).toArray();
+      res.send(result);
+    });
+
+    
 
     // user related api
 
