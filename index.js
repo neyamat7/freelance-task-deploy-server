@@ -24,11 +24,64 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
-    const taskCollection = client.db("allProducts").collection("products");
-    
+    const taskCollection = client.db("taskDB").collection("tasks");
+    // const usersCollection = client.db("allProducts").collection("users");
+
+    app.get("/tasks", async (req, res) => {
+      const result = await taskCollection.find().toArray();
+      res.send(result);
+    });
+
+   
+
+    // user related api
+
+    // app.get("/users", async (req, res) => {
+    //   const result = await usersCollection.find().toArray();
+    //   res.send(result);
+    // });
+
+    // app.post("/users", async (req, res) => {
+    //   const newUserProfile = req.body;
+
+    //   const result = await usersCollection.insertOne(newUserProfile);
+    //   res.send(result);
+    // });
+
+    // app.patch("/users", async (req, res) => {
+    //   const { email, lastSignInTime } = req.body;
+
+    //   const filter = { email: email };
+    //   const updatedDoc = {
+    //     $set: {
+    //       lastSignInTime: lastSignInTime,
+    //     },
+    //   };
+
+    //   const result = await usersCollection.updateOne(filter, updatedDoc);
+    //   res.send(result);
+    // });
+
+    // app.delete("/users/:id", async (req, res) => {
+    //   try {
+    //     const id = req.params.id;
+    //     const { email } = req.body;
+    //     const query = { _id: new ObjectId(id) };
+    //     const result = await usersCollection.deleteOne(query);
+
+    //     // // delete user from firebase
+    //     // const userRecord = await admin.auth().getUserByEmail(email);
+    //     // await admin.auth().deleteUser(userRecord.uid);
+
+    //     res.send(result);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // });
 
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
+
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
