@@ -8,12 +8,12 @@ TaskTempo API is a backend server built for the TaskTempo freelance task managem
 
 ## ✨ Key Features
 
-• **RESTful Task Management** - Complete CRUD operations for tasks with advanced filtering and sorting capabilities
-• **User Management System** - User registration, profile management
-• **Database Integration** - MongoDB with optimized queries.
-• **Security Middleware** - CORS configuration.
-• **Security Middleware** - CORS configuration.
-• **Error Handling** - Comprehensive error handling with meaningful HTTP status codes and messages
+- **RESTful Task Management** - Complete CRUD operations for tasks with advanced filtering and sorting capabilities
+- **User Management System** - User registration, profile management
+- **Database Integration** - MongoDB with optimized queries.
+- **Security Middleware** - CORS configuration.
+- **Security Middleware** - CORS configuration.
+- **Error Handling** - Comprehensive error handling with meaningful HTTP status codes and messages
 
 ## 🛠️ Technologies Used
 
