@@ -4,7 +4,7 @@
 
 ## 🚀 Project Overview
 
-TaskTempo API is a backend server built for the TaskTempo freelance task management platform. This RESTful API comprehensive task management, and user data handling with MongoDB integration.
+TaskHarbour API is a backend server built for the TaskTempo freelance task management platform. This RESTful API comprehensive task management, and user data handling with MongoDB integration.
 
 ## ✨ Key Features
 
